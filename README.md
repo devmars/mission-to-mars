@@ -1,5 +1,5 @@
 # Mission To Mars
-Last minions project, see Lesson #6 in the Java Course https://classroom.udacity.com/courses/ud283
+The last Minions project, see Lesson #6 in the Java Course https://classroom.udacity.com/courses/ud283
 
 ### UML Diagram
 
