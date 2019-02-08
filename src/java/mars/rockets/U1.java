@@ -10,21 +10,19 @@ public class U1 extends Rocket {
 
     @Override
     public boolean launch(){
-        boolean result = false;
-        double numero = (Math.random() * 1);
-        double launchExplotion = (0.05 * (getWeight() / getCargo()));
-        if(numero < launchExplotion){
-            result = true;
-        }
-        return result;
+        return getProbabilityExplotion(0.05);
     }
 
     @Override
     public boolean land() {
+        return getProbabilityExplotion(0.01);
+    }
+
+    private boolean getProbabilityExplotion(double probability){
         boolean result = false;
         double numero = (Math.random() * 1);
-        double landExplotion = (0.01 * (getWeight() / getCargo()));
-        if(numero < landExplotion){
+        double launchExplotion = (probability * (getWeight() / getCargo()));
+        if(numero < launchExplotion){
             result = true;
         }
         return result;

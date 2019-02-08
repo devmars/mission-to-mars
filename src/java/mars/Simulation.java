@@ -31,25 +31,22 @@ public class Simulation {
     public void loadU1(List<Item> items){
         rockets.clear();
         Rocket u1 = new U1(Constans.costU1, Constans.weightU1, Constans.cargoU1);
-        for (Item item : items) {
-            if (u1.canCarry(item)) {
-                u1.carry(item);
-            } else {
-                rockets.add(u1);
-                u1 = new U1(Constans.costU1, Constans.weightU1, Constans.cargoU1);
-            }
-        }
+        loadRockets(u1, Constans.costU1, Constans.weightU1, Constans.cargoU1, items);
     }
 
     public void loadU2(List<Item> items){
         rockets.clear();
         Rocket u2 = new U2(Constans.costU2, Constans.weightU2, Constans.cargoU2);
+        loadRockets(u2, Constans.costU2, Constans.weightU2, Constans.cargoU2, items);
+    }
+
+    private void loadRockets(Rocket rocket, double cost, double weight, double cargo, List<Item> items){
         for (Item item : items) {
-            if (u2.canCarry(item)) {
-                u2.carry(item);
+            if (rocket.canCarry(item)) {
+                rocket.carry(item);
             } else {
-                rockets.add(u2);
-                u2 = new U2(Constans.costU2, Constans.weightU2, Constans.cargoU2);
+                rockets.add(rocket);
+                rocket = new U2(cost, weight, cargo);
             }
         }
     }
