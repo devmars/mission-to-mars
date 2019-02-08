@@ -18,7 +18,8 @@ public class U1 extends Rocket {
         return getProbabilityExplotion(0.01);
     }
 
-    private boolean getProbabilityExplotion(double probability){
+    @Override
+    protected boolean getProbabilityExplotion(double probability) {
         boolean result = false;
         double numero = (Math.random() * 1);
         double launchExplotion = (probability * (getWeight() / getCargo()));

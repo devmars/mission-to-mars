@@ -2,13 +2,18 @@ package mars;
 
 import mars.rockets.U1;
 import mars.rockets.U2;
-import mars.utils.Constans;
 import mars.utils.FileMars;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Simulation {
+    private final double costU1 = 100;
+    private final double weightU1 = 10000;
+    private final double cargoU1 = 18000;
+    private final double costU2 = 120;
+    private final double weightU2 = 18000;
+    private final double cargoU2 = 29000;
 
     private List<Rocket> rockets;
 
@@ -19,9 +24,9 @@ public class Simulation {
     public List<Item> loadItems(String phase){
         FileMars fileMars = new FileMars();
         List<Item> items = new ArrayList<>();
-        List<String> itemsdata = fileMars.readFile(phase);
-        for (String anItemsdata : itemsdata) {
-            String[] itemsData = anItemsdata.split("=");
+        List<String> itemsDataList = fileMars.readFile(phase);
+        for (String itemData : itemsDataList) {
+            String[] itemsData = itemData.split("=");
             Item item = new Item(itemsData[0], Integer.parseInt(itemsData[1]));
             items.add(item);
         }
@@ -30,14 +35,14 @@ public class Simulation {
 
     public void loadU1(List<Item> items){
         rockets.clear();
-        Rocket u1 = new U1(Constans.costU1, Constans.weightU1, Constans.cargoU1);
-        loadRockets(u1, Constans.costU1, Constans.weightU1, Constans.cargoU1, items);
+        Rocket u1 = new U1(costU1, weightU1, cargoU1);
+        loadRockets(u1, costU1, weightU1, cargoU1, items);
     }
 
     public void loadU2(List<Item> items){
         rockets.clear();
-        Rocket u2 = new U2(Constans.costU2, Constans.weightU2, Constans.cargoU2);
-        loadRockets(u2, Constans.costU2, Constans.weightU2, Constans.cargoU2, items);
+        Rocket u2 = new U2(costU2, weightU2, cargoU2);
+        loadRockets(u2, costU2, weightU2, cargoU2, items);
     }
 
     private void loadRockets(Rocket rocket, double cost, double weight, double cargo, List<Item> items){
@@ -46,9 +51,18 @@ public class Simulation {
                 rocket.carry(item);
             } else {
                 rockets.add(rocket);
-                rocket = new U2(cost, weight, cargo);
+                rocket = getRocketIntance(rocket, cost, weight, cargo);
             }
         }
+    }
+
+    private Rocket getRocketIntance(Rocket rocket, double cost, double weight, double cargo) {
+        if(rocket instanceof U1){
+            rocket = new U1(cost, weight, cargo);
+        }else {
+            rocket = new U2(cost, weight, cargo);
+        }
+        return rocket;
     }
 
     public double runSimulation(){

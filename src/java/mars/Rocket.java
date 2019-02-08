@@ -2,15 +2,15 @@ package mars;
 
 import mars.interfaces.SpaceShip;
 
-public class Rocket implements SpaceShip {
+public abstract class Rocket implements SpaceShip {
     protected double cost;
     protected double weight;
     protected double cargo;
 
     public Rocket(double cost, double weight, double cargo){
-        this.setCost(cost);
-        this.setWeight(weight);
-        this.setCargo(cargo);
+        this.cost = cost;
+        this.weight = weight;
+        this.cargo = cargo;
     }
 
     @Override
@@ -25,21 +25,16 @@ public class Rocket implements SpaceShip {
 
     @Override
     public boolean canCarry(Item item) {
-        boolean result = false;
-        double maxWeight = maxWeight();
-        if(maxWeight > item.getWeight()){
-            result = true;
-        }
-        return result;
+        return maxWeight() > item.getWeight();
     }
 
     @Override
     public void carry(Item item) {
-        this.setWeight(getWeight() + item.getWeight());
+        this.weight += item.getWeight();
     }
 
     public double maxWeight(){
-        return getCargo() - getWeight();
+        return cargo - weight;
     }
 
     public double getCost() {
@@ -65,4 +60,6 @@ public class Rocket implements SpaceShip {
     public void setCargo(double cargo) {
         this.cargo = cargo;
     }
+
+    protected abstract boolean getProbabilityExplotion(double probability);
 }
