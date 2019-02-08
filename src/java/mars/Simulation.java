@@ -29,6 +29,7 @@ public class Simulation {
     }
 
     public void loadU1(List<Item> items){
+        rockets.clear();
         Rocket u1 = new U1(Constans.costU1, Constans.weightU1, Constans.cargoU1);
         for (Item item : items) {
             if (u1.canCarry(item)) {
@@ -41,6 +42,7 @@ public class Simulation {
     }
 
     public void loadU2(List<Item> items){
+        rockets.clear();
         Rocket u2 = new U2(Constans.costU2, Constans.weightU2, Constans.cargoU2);
         for (Item item : items) {
             if (u2.canCarry(item)) {

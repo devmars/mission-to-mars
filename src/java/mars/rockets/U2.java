@@ -11,8 +11,9 @@ public class U2 extends Rocket {
     @Override
     public boolean launch(){
         boolean result = false;
-        double launch = (0.04 * (getWeight() / getCargo()))*100;
-        if(launch != 4){
+        double numero = (Math.random() * 1);
+        double launchExplotion = (0.04 * (getWeight() / getCargo()));
+        if(numero < launchExplotion){
             result = true;
         }
         return result;
@@ -21,8 +22,9 @@ public class U2 extends Rocket {
     @Override
     public boolean land() {
         boolean result = false;
-        double launch = (0.08 * (getWeight() / getCargo()))*100;
-        if(launch != 8){
+        double numero = (Math.random() * 1);
+        double launchExplotion = (0.08 * (getWeight() / getCargo()));
+        if(numero < launchExplotion){
             result = true;
         }
         return result;

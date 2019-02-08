@@ -23,7 +23,7 @@ public class Main {
         double totalBudgetPhase1U2 = simulation.runSimulation();
         System.out.println("The total budget required for the rocket U2 phase-1 is: $" + totalBudgetPhase1U2 + " Million\n");
 
-        simulation.loadU1(itemsPhase2);
+        simulation.loadU2(itemsPhase2);
         double totalBudgetPhase2U2 = simulation.runSimulation();
         System.out.println("The total budget required for the rocket U2 phase-2 is: $" + totalBudgetPhase2U2 + " Million\n");
     }
