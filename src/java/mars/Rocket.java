@@ -61,5 +61,13 @@ public abstract class Rocket implements SpaceShip {
         this.cargo = cargo;
     }
 
-    protected abstract boolean getProbabilityExplotion(double probability);
+    protected boolean getProbabilityExplotion(double probability) {
+        boolean result = false;
+        double numero = (Math.random() * 1);
+        double launchExplotion = (probability * (getWeight() / getCargo()));
+        if(numero < launchExplotion){
+            result = true;
+        }
+        return result;
+    }
 }
